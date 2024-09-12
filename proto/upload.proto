@@ -1,0 +1,20 @@
+syntax = "proto3"; // 指定proto版本
+package upload_grpc;     // 指定默认包名
+option go_package = "/upload_grpc";
+
+
+message Response {
+  string text = 1;
+}
+
+message FileRequest{
+  string file_name = 1;
+  bytes content = 2;
+}
+
+service UploadService{
+  rpc UploadFile(stream FileRequest)returns(Response){}//服客户端上传文件:流氏输出,加关键字stream
+}
+
+
+// protoc -I . --go_out=plugins=grpc:. .\upload.proto

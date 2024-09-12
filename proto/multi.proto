@@ -1,0 +1,25 @@
+syntax = "proto3"; // 指定proto版本
+package multi_grpc;     // 指定默认包名
+
+// 指定golang包名
+option go_package = "/multi_grpc";
+//option go_package = ".;xxx";//当前目录生成go文件，文件的包名是xxx
+//cd到proto生成:protoc -I . --go_out=plugins=grpc:. .\multi.proto
+
+
+//定义rpc服务
+service VideoService {
+  // 定义函数
+  rpc Look(Request)returns(Response){}
+}
+
+service OrderService {
+  rpc Buy(Request)returns(Response){}
+}
+
+message Request{
+  string name = 1;
+}
+message Response{
+  string name = 1;
+}

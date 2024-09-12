@@ -1,0 +1,19 @@
+syntax = "proto3"; // 指定proto版本
+package download_grpc;     // 指定默认包名
+option go_package = "/download_grpc";
+
+
+message Request {
+  string name = 1;
+}
+
+message FileResponse{
+  string file_name = 1;
+  bytes content = 2;
+}
+service DownLoadService{
+  rpc DownLoadFile(Request)returns(stream FileResponse){} //服务端流氏输出加关键字stream
+}
+
+
+// protoc -I . --go_out=plugins=grpc:. .\download.proto

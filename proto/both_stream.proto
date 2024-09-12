@@ -1,0 +1,18 @@
+syntax = "proto3"; // 指定proto版本
+package both_stream_grpc;     // 指定默认包名
+option go_package = "/both_stream_grpc";
+
+
+message Request {
+  string name = 1;
+}
+message Response {
+  string Text = 1;
+}
+
+service BothStream{
+  rpc Chat(stream Request)returns(stream Response){}
+}
+
+
+// protoc -I . --go_out=plugins=grpc:. .\both_stream.proto

@@ -1,0 +1,26 @@
+那么grpc就是由 google开发的一个高性能、通用的开源RPC框架
+
+
+环境准备
+只需要在windows上安装protoc转换工具
+
+https://github.com/protocolbuffers/protobuf/releases/download/v3.9.0/protoc-3.9.0-win64.zip
+
+// 都需要安装的依赖
+go get github.com/golang/protobuf/proto
+go get google.golang.org/grpc
+go install github.com/golang/protobuf/protoc-gen-go
+CopyErrorOK!
+安装好之后，需要将protoc的bin目录添加到环境变量中
+
+还需要将protoc-gen-go.exe的目录添加到环境变量中
+
+刚刚添加之后，可能需要重启电脑或者重启goland，才能在goland的terminal中使用
+
+
+编写protobuf文件
+
+通过protobuf生成go文件
+// protoc -I . --go_out=plugins=grpc:. .\hello.proto
+或者是在项目根目录下
+// protoc -I . --go_out=plugins=grpc:.\grpc .\grpc\hello.proto
